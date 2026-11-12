@@ -3,6 +3,11 @@
   color: var(--white);
 }
 
+.titleMask {
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
 .faqSec .wrap {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);

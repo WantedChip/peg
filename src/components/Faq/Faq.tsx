@@ -1,10 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap, SIGNATURE_EASE } from '../../lib/gsap';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { FAQ_ITEMS } from '../../data/faq';
 import styles from './Faq.module.css';
 
 export const Faq: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(
     FAQ_ITEMS.find((item) => item.defaultOpen)?.id || null
+  );
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion) return;
+
+      const heading = headingRef.current;
+
+      if (heading) {
+        gsap.fromTo(
+          heading,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            duration: 0.85,
+            ease: SIGNATURE_EASE,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef, dependencies: [prefersReducedMotion] }
   );
 
   const handleToggle = (id: string, isOpen: boolean) => {
@@ -16,12 +48,14 @@ export const Faq: React.FC = () => {
   };
 
   return (
-    <section className={`section ${styles.faqSec}`} id="faq">
+    <section ref={sectionRef} className={`section ${styles.faqSec}`} id="faq">
       <div className={`wrap ${styles.wrap}`}>
         <div>
-          <h2 className="display">
-            Fair <em className="serif">questions.</em>
-          </h2>
+          <div className={styles.titleMask}>
+            <h2 ref={headingRef} className="display">
+              Fair <em className="serif">questions.</em>
+            </h2>
+          </div>
         </div>
 
         <div className={styles.faqList}>

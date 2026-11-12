@@ -1,18 +1,1 @@
-.prog {
-  position: fixed;
-  top: env(safe-area-inset-top, 0px);
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 90;
-  pointer-events: none;
-}
-
-.bar {
-  display: block;
-  height: 100%;
-  background: var(--coral);
-  transform-origin: left;
-  transform: scaleX(0);
-  will-change: transform;
-}
+/* Deprecated: Progress bar is now rendered inside the circular BackToTop button */

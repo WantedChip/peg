@@ -3,6 +3,11 @@
   color: var(--white);
 }
 
+.titleMask {
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
 .prSec .sectionHead p {
   max-width: 46ch;
   color: #c3c8b9;

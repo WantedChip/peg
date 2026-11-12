@@ -17,15 +17,20 @@ export const Header: React.FC = () => {
 
   // Scroll direction detection for show/hide header
   useEffect(() => {
+    const SCROLL_THRESHOLD = 24; // Threshold to prevent micro-jitters / clicks from toggling header
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (isOpen) return; // Keep visible if menu is open
 
       if (currentScrollY <= 80) {
         setHidden(false);
-      } else if (currentScrollY > 100 && currentScrollY > lastScrollYRef.current + 8) {
+      } else if (
+        currentScrollY > 100 &&
+        currentScrollY > lastScrollYRef.current + SCROLL_THRESHOLD
+      ) {
         setHidden(true);
-      } else if (currentScrollY < lastScrollYRef.current - 8) {
+      } else if (currentScrollY < lastScrollYRef.current - SCROLL_THRESHOLD) {
         setHidden(false);
       }
       lastScrollYRef.current = currentScrollY;

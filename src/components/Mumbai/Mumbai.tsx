@@ -8,6 +8,7 @@ import styles from './Mumbai.module.css';
 
 export const Mumbai: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const cloudRef = useRef<HTMLDivElement>(null);
   const { scrollTo } = useLenisContext();
   const prefersReducedMotion = useReducedMotion();
@@ -16,25 +17,46 @@ export const Mumbai: React.FC = () => {
     () => {
       if (prefersReducedMotion) return;
 
+      const heading = headingRef.current;
       const cloud = cloudRef.current;
-      if (!cloud) return;
 
-      gsap.fromTo(
-        cloud.children,
-        { scale: 0.85, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.45,
-          stagger: 0.03,
-          ease: SIGNATURE_EASE,
-          scrollTrigger: {
-            trigger: cloud,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
+      // Masked heading reveal
+      if (heading) {
+        gsap.fromTo(
+          heading,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            duration: 0.85,
+            ease: SIGNATURE_EASE,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      // Staggered MMR tag cloud
+      if (cloud) {
+        gsap.fromTo(
+          cloud.children,
+          { scale: 0.85, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.45,
+            stagger: 0.03,
+            ease: SIGNATURE_EASE,
+            scrollTrigger: {
+              trigger: cloud,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
     },
     { scope: sectionRef, dependencies: [prefersReducedMotion] }
   );
@@ -49,9 +71,11 @@ export const Mumbai: React.FC = () => {
     <section ref={sectionRef} className={`section ${styles.neighbourhoodSection}`} id="mumbai">
       <div className={`wrap ${styles.neighbourhoodGrid}`}>
         <div className={styles.neighbourhoodCopy}>
-          <h2 className="display">
-            A city of <em className="serif">many moods.</em>
-          </h2>
+          <div className={styles.titleMask}>
+            <h2 ref={headingRef} className="display">
+              A city of <em className="serif">many moods.</em>
+            </h2>
+          </div>
           <p>
             PEG is starting with Mumbai and selected neighbourhoods across the wider MMR. The first
             version is a focused beginning, with room to grow as the idea takes shape.

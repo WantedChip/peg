@@ -3,6 +3,11 @@
   color: var(--ink);
 }
 
+.titleMask {
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
 .spGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;

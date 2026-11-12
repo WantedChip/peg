@@ -1,31 +1,26 @@
 .totop {
   position: fixed;
-  right: max(16px, env(safe-area-inset-right, 0px));
-  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  right: max(18px, env(safe-area-inset-right, 0px));
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 80;
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--acid);
-  color: var(--ink);
-  border: 2px solid var(--ink);
   display: grid;
   place-items: center;
-  font-weight: 900;
-  font-size: 20px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
+  transform: translateY(12px) scale(0.9);
   transition:
-    opacity 0.25s,
-    transform 0.25s,
-    visibility 0.25s;
+    opacity 0.28s ease,
+    transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.28s ease;
   cursor: pointer;
+  box-shadow: 0 4px 18px rgba(17, 20, 15, 0.18);
 }
 
 .totop:hover {
-  transform: translateY(-2px);
-  background: #e4ff8c;
+  transform: translateY(-2px) scale(1.04);
 }
 
 .show {
@@ -34,8 +29,50 @@
   transform: none;
 }
 
+.progressRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  border-radius: 50%;
+}
+
+.trackCircle {
+  fill: var(--acid);
+  stroke: var(--ink);
+  stroke-width: 2.2px;
+}
+
+.progressCircle {
+  fill: none;
+  stroke: var(--coral);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.arrow {
+  position: relative;
+  z-index: 2;
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ink);
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.totop:hover .arrow {
+  transform: translateY(-2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .totop {
-    transition: none;
+  .totop,
+  .progressCircle,
+  .arrow {
+    transition: none !important;
   }
 }

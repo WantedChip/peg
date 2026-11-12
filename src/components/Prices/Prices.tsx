@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { Flip, gsap } from '../../lib/gsap';
+import { useGSAP } from '@gsap/react';
+import { Flip, gsap, SIGNATURE_EASE } from '../../lib/gsap';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { SAMPLE_VENUES, VENUE_FILTERS, Venue } from '../../data/venues';
 import { formatINR } from '../../utils/format';
@@ -7,6 +8,8 @@ import styles from './Prices.module.css';
 
 export const Prices: React.FC = () => {
   const [currentFilter, setCurrentFilter] = useState<string>('all');
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -14,6 +17,33 @@ export const Prices: React.FC = () => {
     if (currentFilter === 'all') return true;
     return venue.tags.includes(currentFilter);
   });
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion) return;
+
+      const heading = headingRef.current;
+
+      // Editorial masked reveal on display heading
+      if (heading) {
+        gsap.fromTo(
+          heading,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            duration: 0.85,
+            ease: SIGNATURE_EASE,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef, dependencies: [prefersReducedMotion] }
+  );
 
   const handleFilterClick = (filterId: string) => {
     if (filterId === currentFilter) return;
@@ -49,11 +79,11 @@ export const Prices: React.FC = () => {
   };
 
   return (
-    <section className={`section ${styles.prSec}`} id="prices">
+    <section ref={sectionRef} className={`section ${styles.prSec}`} id="prices">
       <div className="wrap">
         <div className="section-head">
-          <div>
-            <h2 className="display">
+          <div className={styles.titleMask}>
+            <h2 ref={headingRef} className="display">
               Find your kind of place. <em className="serif">Know what it costs.</em>
             </h2>
           </div>
@@ -81,15 +111,15 @@ export const Prices: React.FC = () => {
         <div
           ref={gridRef}
           className={styles.vgrid}
-          id="vg"
+          id="prices-cards"
           tabIndex={0}
           role="region"
-          aria-label="Sample venues. Scroll sideways on small screens to see more."
+          aria-label="Indicative venue prices list. Scroll sideways on smaller screens."
         >
           {filteredVenues.map((v) => (
-            <article key={v.id} className={styles.vcard}>
+            <article key={v.id} className={styles.vcard} data-tags={v.tags.join(' ')}>
               <h3>{v.name}</h3>
-              <p className={styles.ar}>{v.area}</p>
+              <div className={styles.ar}>{v.area}</div>
               <dl>
                 <dt>Draft pint</dt>
                 <dd>{formatINR(v.draftPint)}</dd>
@@ -98,39 +128,35 @@ export const Prices: React.FC = () => {
                 <dt>Happy hour</dt>
                 <dd>{v.happyHour}</dd>
               </dl>
-              <p className={styles.ck}>Example: last checked {v.daysAgo} days ago</p>
+              <div className={styles.ck}>Example: last checked {v.daysAgo} days ago</div>
             </article>
           ))}
 
-          {currentFilter === 'all' && (
-            <div key="pegcard-def" className={styles.pegcard}>
-              <b>peg, noun</b>
-              <p>
-                A measure of spirits, commonly 30 or 60 ml in India. Also what we’re calling this
-                for now.
-              </p>
-            </div>
-          )}
+          {/* Persistent Peg noun definition card */}
+          <article className={styles.vcardNoun}>
+            <h3 className="serif">peg, noun</h3>
+            <p>A measure of spirits, commonly 30 or 60 ml in India. Also what we’re calling this for now.</p>
+          </article>
         </div>
 
-        <p className={styles.vcount} id="vc" aria-live="polite">
+        <div className={styles.showingCount} aria-live="polite">
           Showing {filteredVenues.length} of {SAMPLE_VENUES.length} sample venues.
-        </p>
+        </div>
 
-        <ul className={styles.clarity}>
-          <li>
-            <b>Indicative means indicative</b>
-            Prices are a guide. Taxes, cover charges and menus can differ.
-          </li>
-          <li>
-            <b>Freshness should be visible</b>
-            Every price would carry a “last checked” date.
-          </li>
-          <li>
-            <b>Going home is part of going out</b>
-            Plans include the cab, not just the first round.
-          </li>
-        </ul>
+        <div className={styles.discRow}>
+          <div>
+            <strong>Indicative means indicative</strong>
+            <p>Prices are a guide. Taxes, cover charges and menus can differ.</p>
+          </div>
+          <div>
+            <strong>Freshness should be visible</strong>
+            <p>Every price would carry a “last checked” date.</p>
+          </div>
+          <div>
+            <strong>Going home is part of going out</strong>
+            <p>Plans include the cab, not just the first round.</p>
+          </div>
+        </div>
       </div>
     </section>
   );

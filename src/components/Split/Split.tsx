@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import { gsap, SIGNATURE_EASE } from '../../lib/gsap';
+import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { SPLIT_PEOPLE, SPLIT_NOTES, MAX_SPLIT_AMOUNT, SplitMode } from '../../data/split';
 import { calculatePersonSplit } from '../../utils/calculations';
 import { formatINR } from '../../utils/format';
@@ -31,14 +34,46 @@ const PersonBar: React.FC<PersonBarProps> = ({ name, itemDescription, amount }) 
 
 export const Split: React.FC = () => {
   const [mode, setMode] = useState<SplitMode>('f');
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  useGSAP(
+    () => {
+      if (prefersReducedMotion) return;
+
+      const heading = headingRef.current;
+
+      // Masked title reveal
+      if (heading) {
+        gsap.fromTo(
+          heading,
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            duration: 0.85,
+            ease: SIGNATURE_EASE,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef, dependencies: [prefersReducedMotion] }
+  );
 
   return (
-    <section className={`section ${styles.spSec}`} id="split">
+    <section ref={sectionRef} className={`section ${styles.spSec}`} id="split">
       <div className={`wrap ${styles.spGrid}`}>
         <div>
-          <h2 className="display">
-            The bill dies here, <em className="serif">not at the table.</em>
-          </h2>
+          <div className={styles.titleMask}>
+            <h2 ref={headingRef} className="display">
+              The bill dies here, <em className="serif">not at the table.</em>
+            </h2>
+          </div>
           <p className={styles.spNote}>
             One friend had craft cocktails, another had nimbu soda. Split it equally or by what each
             person actually had. Sample bill: ₹4,800 for four, with ₹800 of shared food.
@@ -79,6 +114,7 @@ export const Split: React.FC = () => {
               );
             })}
           </div>
+
           <p className={styles.spNote} id="sn">
             {SPLIT_NOTES[mode]}
           </p>

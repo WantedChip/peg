@@ -2,6 +2,11 @@
   background: #e3e1d5;
 }
 
+.titleMask {
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
 .neighbourhoodGrid {
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;

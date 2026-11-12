@@ -37,35 +37,39 @@ export const Route: React.FC = () => {
           strokeDashoffset: length,
         });
 
-        const tl = gsap.timeline({
+        // Scrubbed route line drawing
+        gsap.to([path, dashPath], {
+          strokeDashoffset: 0,
+          ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top 70%',
-            end: 'center 40%',
+            end: 'center 45%',
             scrub: 0.6,
           },
         });
 
-        tl.to([path, dashPath], {
-          strokeDashoffset: 0,
-          ease: 'none',
-        });
+        // Stops and badges enter once section arrives and stay visible
+        if (map.stopsGroup && map.labelsGroup) {
+          const entranceTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              toggleActions: 'play none none none',
+            },
+          });
 
-        if (map.stopsGroup) {
-          tl.fromTo(
+          entranceTl.fromTo(
             map.stopsGroup.children,
             { scale: 0, opacity: 0, transformOrigin: 'center' },
-            { scale: 1, opacity: 1, stagger: 0.2, ease: 'back.out(2)' },
-            0.2
+            { scale: 1, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'back.out(2)' }
           );
-        }
 
-        if (map.labelsGroup) {
-          tl.fromTo(
+          entranceTl.fromTo(
             map.labelsGroup.children,
             { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, stagger: 0.2 },
-            0.4
+            { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' },
+            0.2
           );
         }
       });
@@ -116,16 +120,36 @@ export const Route: React.FC = () => {
       );
     }
 
-    // Quick redraw of route line
-    const map = routeMapRef.current;
-    if (map?.routePath && map?.dashPath) {
-      const length = map.routePath.getTotalLength ? map.routePath.getTotalLength() : 650;
-      gsap.fromTo(
-        [map.routePath, map.dashPath],
-        { strokeDashoffset: length },
-        { strokeDashoffset: 0, duration: 0.7, ease: SECONDARY_EASE }
-      );
-    }
+    // Quick redraw of route line on new path
+    requestAnimationFrame(() => {
+      const map = routeMapRef.current;
+      if (map?.routePath && map?.dashPath) {
+        const length = map.routePath.getTotalLength ? map.routePath.getTotalLength() : 650;
+        gsap.set([map.routePath, map.dashPath], {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+        });
+        gsap.to([map.routePath, map.dashPath], {
+          strokeDashoffset: 0,
+          duration: 0.7,
+          ease: SECONDARY_EASE,
+        });
+      }
+      if (map?.labelsGroup) {
+        gsap.fromTo(
+          map.labelsGroup.children,
+          { opacity: 0, y: 8 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: SIGNATURE_EASE }
+        );
+      }
+      if (map?.stopsGroup) {
+        gsap.fromTo(
+          map.stopsGroup.children,
+          { scale: 0.6, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.4, stagger: 0.08, ease: 'back.out(2)' }
+        );
+      }
+    });
   };
 
   return (
@@ -145,7 +169,7 @@ export const Route: React.FC = () => {
 
         <div className={styles.routeDemo}>
           <div className={styles.routeMap}>
-            <RouteMap ref={routeMapRef} />
+            <RouteMap ref={routeMapRef} area={selectedArea} />
             <div className={styles.mapCaption} id="route-map-caption">
               {currentRoute.caption}
             </div>
@@ -173,7 +197,11 @@ export const Route: React.FC = () => {
                   type="button"
                   data-area={area}
                   aria-pressed={selectedArea === area}
-                  onClick={() => handleAreaChange(area)}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAreaChange(area);
+                  }}
                 >
                   {area}
                 </button>
