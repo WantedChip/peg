@@ -1,0 +1,210 @@
+.routeSection {
+  background: #e8e6da;
+}
+
+.routeSection h2 em {
+  color: #7c9660;
+}
+
+.routeDemo {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: center;
+}
+
+.routeMap {
+  position: relative;
+  overflow: hidden;
+  background: #d7ddc8;
+  border: 1px solid rgba(17, 20, 15, 0.12);
+  padding: 16px;
+  min-height: 405px;
+}
+
+.routeMap svg {
+  width: 100%;
+  height: auto;
+  min-height: 350px;
+}
+
+.mapCaption {
+  position: absolute;
+  left: 27px;
+  bottom: 23px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #606d4b;
+  font:
+    800 8px var(--mono),
+    monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mapCaption::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6b8f46;
+}
+
+.routeCopy .routeKicker {
+  color: #7b816d;
+  font:
+    800 11px var(--mono),
+    monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.routeCopy h3 {
+  margin: 12px 0 13px;
+  font: 900 clamp(37px, 5vw, 65px) / 0.9 var(--display);
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.routeCopy > p {
+  max-width: 420px;
+  color: #686a60;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.areaTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 25px 0 22px;
+}
+
+.areaTab {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid rgba(17, 20, 15, 0.2);
+  background: transparent;
+  color: #5b5f54;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.areaTab:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.areaTab[aria-pressed='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--acid);
+}
+
+.routeStops {
+  border-top: 1px solid rgba(17, 20, 15, 0.2);
+}
+
+.routeStop {
+  display: grid;
+  grid-template-columns: 27px 1fr auto;
+  gap: 11px;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(17, 20, 15, 0.13);
+  will-change: transform, opacity;
+}
+
+.stopNum {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--acid);
+  font:
+    800 11px var(--mono),
+    monospace;
+}
+
+.routeStop strong {
+  display: block;
+  font-size: 14px;
+}
+
+.routeStop small {
+  display: block;
+  margin-top: 3px;
+  color: #77796f;
+  font-size: 12px;
+}
+
+.routeStop em {
+  color: #77796f;
+  font: italic 14px var(--serif);
+}
+
+.routeDisclaimer {
+  margin-top: 13px;
+  color: #85877c;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .routeDemo {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .routeMap {
+    min-height: 340px;
+  }
+
+  .routeMap svg {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 680px) {
+  .routeMap {
+    min-height: 270px;
+    padding: 8px;
+  }
+
+  .routeMap svg {
+    min-height: 255px;
+  }
+
+  .mapCaption {
+    left: 17px;
+    bottom: 14px;
+    font-size: 7px;
+  }
+
+  .routeCopy h3 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 360px) {
+  .routeStop {
+    grid-template-columns: 25px 1fr auto;
+    gap: 8px;
+  }
+
+  .areaTabs {
+    gap: 5px;
+  }
+
+  .areaTab {
+    padding: 0 10px;
+  }
+}

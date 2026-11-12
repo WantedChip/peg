@@ -1,0 +1,123 @@
+.neighbourhoodSection {
+  background: #e3e1d5;
+}
+
+.neighbourhoodGrid {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: clamp(30px, 7vw, 100px);
+  align-items: center;
+}
+
+.neighbourhoodCopy h2 {
+  margin-top: 16px;
+  font-size: clamp(43px, 6vw, 78px);
+}
+
+.neighbourhoodCopy h2 em {
+  color: #7c9660;
+}
+
+.neighbourhoodCopy p {
+  max-width: 430px;
+  margin-top: 20px;
+  color: #67695f;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.neighbourhoodCopy .button {
+  margin-top: 25px;
+}
+
+.areaBoard {
+  padding: clamp(17px, 3vw, 30px);
+  background: #f3f1e8;
+  border: 1px solid rgba(17, 20, 15, 0.12);
+  box-shadow: 10px 12px 0 rgba(17, 20, 15, 0.07);
+}
+
+.areaBoardHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  font:
+    800 11px var(--mono),
+    monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.areaBoardHead span:last-child {
+  color: #7d846b;
+}
+
+.areaCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px 0;
+}
+
+.areaCloud span {
+  padding: 10px 12px;
+  border: 1px solid rgba(17, 20, 15, 0.15);
+  font-size: 14px;
+  font-weight: 750;
+  transition: transform 0.2s ease;
+}
+
+.areaCloud span:hover {
+  transform: translateY(-2px);
+}
+
+.areaCloud span:nth-child(3n + 1) {
+  background: #e0e8d4;
+}
+
+.areaCloud span:nth-child(3n + 2) {
+  background: #f5d0c3;
+}
+
+.areaCloud span:nth-child(3n) {
+  background: #dce1f1;
+}
+
+.areaCloud span.later {
+  background: transparent !important;
+  border: 1px dashed rgba(17, 20, 15, 0.3);
+  color: #808378;
+  font-weight: 650;
+}
+
+.areaBoardFoot {
+  padding-top: 13px;
+  border-top: 1px solid var(--line);
+  color: #77796f;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .neighbourhoodGrid {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 35px;
+  }
+}
+
+@media (max-width: 680px) {
+  .neighbourhoodGrid {
+    grid-template-columns: 1fr;
+    gap: 27px;
+  }
+
+  .neighbourhoodCopy h2 {
+    font-size: 58px;
+  }
+
+  .areaBoard {
+    padding: 17px;
+  }
+}

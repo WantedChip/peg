@@ -1,0 +1,149 @@
+.closing {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(75px, 9vw, 125px);
+  background: var(--coral);
+  color: #2c231e;
+}
+
+.watermark {
+  position: absolute;
+  right: -0.04em;
+  bottom: -0.35em;
+  color: rgba(44, 35, 30, 0.08);
+  font: 900 clamp(260px, 45vw, 650px) / 0.8 var(--display);
+  letter-spacing: -0.08em;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;
+}
+
+.closingInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 35px;
+}
+
+.closing h2 {
+  max-width: 760px;
+  margin-top: 20px;
+  font-size: clamp(56px, 9vw, 122px);
+}
+
+.closing h2 em {
+  color: #fff0dc;
+}
+
+.closingSide {
+  max-width: 380px;
+  padding-bottom: 7px;
+}
+
+.closingSide p {
+  margin-bottom: 20px;
+  color: rgba(44, 35, 30, 0.85);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.closing .button {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.closing .button:hover {
+  background: #30372a;
+}
+
+.closing .button.outline {
+  background: transparent;
+  color: #2c231e;
+  border-color: rgba(44, 35, 30, 0.5);
+}
+
+.closing .button.outline:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.ctaRow {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.shareStatus {
+  margin: 10px 0 0;
+  min-height: 1.4em;
+  font-weight: 700;
+  font-size: 14px;
+  color: #11140f;
+}
+
+.demoForm {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(17, 20, 15, 0.3);
+}
+
+.demoForm label {
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.formRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.demoForm input {
+  flex: 1 1 200px;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  font: inherit;
+}
+
+.demoForm input:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.demoForm small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(44, 35, 30, 0.75);
+}
+
+.demoStatus {
+  margin: 6px 0 0;
+  font-weight: 700;
+  font-size: 14px;
+  min-height: 1.4em;
+}
+
+@media (max-width: 680px) {
+  .closingInner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .closing h2 {
+    font-size: clamp(58px, 14vw, 88px);
+  }
+
+  .closingSide {
+    max-width: 100%;
+  }
+}
