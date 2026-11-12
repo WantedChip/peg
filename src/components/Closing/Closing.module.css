@@ -31,6 +31,8 @@
   max-width: 760px;
   margin-top: 20px;
   font-size: clamp(56px, 9vw, 122px);
+  line-height: 1.0;
+  letter-spacing: 0.5px;
 }
 
 .closing h2 em {

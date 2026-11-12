@@ -15,9 +15,9 @@
 
 .howSteps h3 {
   margin: 0 0 10px;
-  font: 900 clamp(22px, 2.4vw, 30px) / 1.02 var(--display);
+  font: 900 clamp(22px, 2.4vw, 30px) / 1.05 var(--display);
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.5px;
 }
 
 .howSteps h3::before {
@@ -54,7 +54,7 @@
   margin: 0 0 14px;
   font: 900 20px var(--display);
   text-transform: uppercase;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.5px;
 }
 
 .isCard ul {

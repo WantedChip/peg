@@ -62,8 +62,8 @@
 
 .routeCopy h3 {
   margin: 12px 0 13px;
-  font: 900 clamp(37px, 5vw, 65px) / 0.9 var(--display);
-  letter-spacing: -0.035em;
+  font: 900 clamp(37px, 5vw, 65px) / 1.0 var(--display);
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 

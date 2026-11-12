@@ -54,6 +54,8 @@
   max-width: 650px;
   margin: 25px 0 23px;
   font-size: clamp(76px, 10.7vw, 156px);
+  line-height: 0.95;
+  letter-spacing: 0.5px;
   will-change: transform, opacity;
 }
 
@@ -181,8 +183,8 @@
 }
 
 .posterBottom strong {
-  font: 900 clamp(20px, 3vw, 34px) / 0.9 var(--display);
-  letter-spacing: -0.035em;
+  font: 900 clamp(20px, 3vw, 34px) / 1.0 var(--display);
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 

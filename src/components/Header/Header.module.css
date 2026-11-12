@@ -32,7 +32,7 @@
   font-family: var(--display);
   font-size: 29px;
   line-height: 1;
-  letter-spacing: -0.035em;
+  letter-spacing: 0.5px;
   color: var(--white);
 }
 

@@ -93,8 +93,8 @@
 }
 
 .budgetNumber strong {
-  font: 900 clamp(47px, 6vw, 78px) / 0.9 var(--display);
-  letter-spacing: -0.04em;
+  font: 900 clamp(47px, 6vw, 78px) / 1.0 var(--display);
+  letter-spacing: 0.5px;
   color: var(--acid);
   font-variant-numeric: tabular-nums;
 }
@@ -219,7 +219,7 @@
 
 .receiptHead strong {
   font: 900 24px/1 var(--display);
-  letter-spacing: -0.03em;
+  letter-spacing: 0.5px;
 }
 
 .sampleChip {
@@ -252,8 +252,8 @@
 }
 
 .receiptTotal strong {
-  font: 900 clamp(40px, 5vw, 62px) / 0.9 var(--display);
-  letter-spacing: -0.045em;
+  font: 900 clamp(40px, 5vw, 62px) / 1.0 var(--display);
+  letter-spacing: 0.5px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -301,6 +301,7 @@
 
 .receiptBottom strong {
   font: 900 19px var(--display);
+  letter-spacing: 0.5px;
   font-variant-numeric: tabular-nums;
 }
 
