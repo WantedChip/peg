@@ -50,7 +50,7 @@
   stroke: var(--coral);
   stroke-width: 3.5px;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.1s linear;
+  transition: none;
 }
 
 .arrow {

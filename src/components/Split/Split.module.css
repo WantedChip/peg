@@ -5,7 +5,10 @@
 
 .titleMask {
   overflow: hidden;
-  padding-bottom: 4px;
+  padding-bottom: 12px;
+  padding-right: 36px;
+  margin-right: -36px;
+  margin-bottom: -12px;
 }
 
 .spGrid {

@@ -132,31 +132,33 @@ export const Prices: React.FC = () => {
             </article>
           ))}
 
-          {/* Persistent Peg noun definition card */}
-          <article className={styles.vcardNoun}>
-            <h3 className="serif">peg, noun</h3>
-            <p>A measure of spirits, commonly 30 or 60 ml in India. Also what we’re calling this for now.</p>
-          </article>
+          {/* Peg noun definition card (shown when filter is 'all') */}
+          {currentFilter === 'all' && (
+            <article className={styles.pegcard}>
+              <b>peg, noun</b>
+              <p>A measure of spirits, commonly 30 or 60 ml in India. Also what we’re calling this for now.</p>
+            </article>
+          )}
         </div>
 
-        <div className={styles.showingCount} aria-live="polite">
+        <p className={styles.vcount} id="vc" aria-live="polite">
           Showing {filteredVenues.length} of {SAMPLE_VENUES.length} sample venues.
-        </div>
+        </p>
 
-        <div className={styles.discRow}>
-          <div>
-            <strong>Indicative means indicative</strong>
-            <p>Prices are a guide. Taxes, cover charges and menus can differ.</p>
-          </div>
-          <div>
-            <strong>Freshness should be visible</strong>
-            <p>Every price would carry a “last checked” date.</p>
-          </div>
-          <div>
-            <strong>Going home is part of going out</strong>
-            <p>Plans include the cab, not just the first round.</p>
-          </div>
-        </div>
+        <ul className={styles.clarity}>
+          <li>
+            <b>Indicative means indicative</b>
+            Prices are a guide. Taxes, cover charges and menus can differ.
+          </li>
+          <li>
+            <b>Freshness should be visible</b>
+            Every price would carry a “last checked” date.
+          </li>
+          <li>
+            <b>Going home is part of going out</b>
+            Plans include the cab, not just the first round.
+          </li>
+        </ul>
       </div>
     </section>
   );

@@ -5,12 +5,15 @@
 
 .titleMask {
   overflow: hidden;
-  padding-bottom: 4px;
+  padding-bottom: 16px;
+  padding-right: 48px;
+  margin-right: -48px;
+  margin-bottom: -16px;
 }
 
 .faqSec .wrap {
   display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(28px, 5vw, 72px);
   align-items: start;
 }
@@ -19,6 +22,8 @@
   max-width: 720px;
   font-size: clamp(42px, 6.2vw, 86px);
   margin-top: 0;
+  line-height: 0.95;
+  padding-right: 20px;
 }
 
 .faqSec h2 em {
