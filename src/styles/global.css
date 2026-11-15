@@ -14,6 +14,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (max-width: 680px) {
@@ -25,12 +28,22 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+#root,
+main {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body.menu-open {
@@ -173,6 +186,8 @@ svg {
 
 .section {
   padding-block: clamp(76px, 9vw, 132px);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 .section-head {

@@ -23,7 +23,7 @@
     'Anton', Impact, Haettenschweiler, 'Arial Narrow Bold', 'Segoe UI Condensed', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
 
-  --gutter: clamp(20px, 5vw, 76px);
+  --gutter: clamp(16px, 4.5vw, 76px);
   --max: 1440px;
   --radius: 20px;
   --header-height: 86px;

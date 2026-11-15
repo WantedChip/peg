@@ -1,6 +1,8 @@
 .closing {
   position: relative;
   overflow: hidden;
+  overflow-x: hidden;
+  max-width: 100%;
   padding-block: clamp(75px, 9vw, 125px);
   background: var(--coral);
   color: #2c231e;
@@ -142,10 +144,20 @@
   }
 
   .closing h2 {
-    font-size: clamp(58px, 14vw, 88px);
+    font-size: clamp(44px, 13vw, 76px);
   }
 
   .closingSide {
     max-width: 100%;
+  }
+
+  .ctaRow .button,
+  .formRow .button {
+    width: 100%;
+  }
+
+  .demoForm input {
+    width: 100%;
+    flex: 1 1 100%;
   }
 }

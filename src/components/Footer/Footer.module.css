@@ -3,6 +3,8 @@
   background: var(--ink);
   color: var(--white);
   padding-bottom: max(32px, env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .footerInner {

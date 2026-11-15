@@ -268,6 +268,8 @@
 @media (max-width: 680px) {
   .hero {
     padding: 124px 0 48px;
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   .heroGrid {
@@ -276,9 +278,10 @@
   }
 
   .heroTitle {
-    max-width: 550px;
-    font-size: clamp(78px, 18vw, 130px);
+    max-width: 100%;
+    font-size: clamp(56px, 16vw, 110px);
     margin-top: 21px;
+    overflow-wrap: break-word;
   }
 
   .heroLead {
@@ -286,19 +289,22 @@
   }
 
   .heroArt {
-    width: calc(100% - 14px);
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0 0 16px;
+    box-sizing: border-box;
   }
 
   .routePoster {
     transform: rotate(0.5deg);
     padding: 14px;
+    box-shadow: 8px 10px 0 rgba(215, 255, 88, 0.12);
   }
 
   .posterStamp {
-    right: -11px;
-    top: -16px;
+    right: -4px;
+    top: -14px;
     width: 65px;
     height: 65px;
     font-size: 8px;
@@ -316,7 +322,14 @@
 
 @media (max-width: 360px) {
   .heroTitle {
-    font-size: 73px;
+    font-size: clamp(48px, 15vw, 68px);
+  }
+
+  .posterStamp {
+    right: 0;
+    top: -10px;
+    width: 56px;
+    height: 56px;
   }
 
   .heroActions .button {

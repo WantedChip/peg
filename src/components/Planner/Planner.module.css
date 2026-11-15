@@ -1,6 +1,8 @@
 .budgetSection {
   position: relative;
   overflow: hidden;
+  overflow-x: hidden;
+  max-width: 100%;
   background: var(--ink);
   color: var(--white);
 }
@@ -353,7 +355,7 @@
   }
 
   .receiptTotal strong {
-    font-size: 53px;
+    font-size: clamp(38px, 12vw, 53px);
   }
 }
 

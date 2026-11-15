@@ -1,5 +1,7 @@
 .routeSection {
   background: #e8e6da;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .routeSection h2 em {

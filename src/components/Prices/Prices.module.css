@@ -1,14 +1,15 @@
 .prSec {
   background: var(--ink);
   color: var(--white);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .titleMask {
   overflow: hidden;
   padding-bottom: 12px;
-  padding-right: 36px;
-  margin-right: -36px;
-  margin-bottom: -12px;
+  padding-right: 24px;
+  max-width: 100%;
 }
 
 .prSec .sectionHead p {
@@ -162,16 +163,14 @@
 
 @media (max-width: 700px) {
   .vgrid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
     gap: 12px;
-    padding-bottom: 14px;
-    -webkit-overflow-scrolling: touch;
   }
 
-  .vgrid > * {
-    flex: 0 0 80%;
-    scroll-snap-align: start;
+  .vcard,
+  .pegcard {
+    width: 100%;
+    box-sizing: border-box;
   }
 }

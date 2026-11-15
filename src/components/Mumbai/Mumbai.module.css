@@ -1,13 +1,14 @@
 .neighbourhoodSection {
   background: #e3e1d5;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .titleMask {
   overflow: hidden;
   padding-bottom: 12px;
-  padding-right: 36px;
-  margin-right: -36px;
-  margin-bottom: -12px;
+  padding-right: 24px;
+  max-width: 100%;
 }
 
 .neighbourhoodGrid {
@@ -122,10 +123,11 @@
   }
 
   .neighbourhoodCopy h2 {
-    font-size: 58px;
+    font-size: clamp(38px, 11vw, 56px);
   }
 
   .areaBoard {
-    padding: 17px;
+    padding: 16px;
+    box-shadow: 6px 8px 0 rgba(17, 20, 15, 0.07);
   }
 }

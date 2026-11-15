@@ -1,14 +1,15 @@
 .spSec {
   background: var(--blue);
   color: var(--ink);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .titleMask {
   overflow: hidden;
   padding-bottom: 12px;
-  padding-right: 36px;
-  margin-right: -36px;
-  margin-bottom: -12px;
+  padding-right: 24px;
+  max-width: 100%;
 }
 
 .spGrid {
@@ -95,6 +96,19 @@
 @media (max-width: 820px) {
   .spGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .bar {
+    grid-template-columns: 4.5em 1fr auto;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .bar span:last-child {
+    min-width: 50px;
+    font-size: 13px;
   }
 }
 
